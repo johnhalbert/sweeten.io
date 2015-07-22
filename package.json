@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "sweeten.io",
   "description": "Sweeten.IO web platform",
   "dependencies": {
@@ -8,3 +9,11 @@
     "path": "^0.11.14"
   }
 }
+=======
+	"name": "sweeten.io",
+	"description": "Sweeten.IO web platform",
+	"dependencies": {
+	
+	}
+}
+>>>>>>> 24e1d812e99dae958894dbdee86e304b21f26c97
