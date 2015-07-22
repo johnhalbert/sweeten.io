@@ -1,19 +1,11 @@
 {
-<<<<<<< HEAD
   "name": "sweeten.io",
   "description": "Sweeten.IO web platform",
   "dependencies": {
     "body-parser": "^1.13.2",
     "express": "^4.13.1",
     "mongoose": "^4.0.8",
-    "path": "^0.11.14"
+    "path": "^0.11.14",
+    "semantic": "0.0.1"
   }
 }
-=======
-	"name": "sweeten.io",
-	"description": "Sweeten.IO web platform",
-	"dependencies": {
-	
-	}
-}
->>>>>>> 24e1d812e99dae958894dbdee86e304b21f26c97
