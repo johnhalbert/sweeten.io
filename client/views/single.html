@@ -1,0 +1,9 @@
+	<!-- Single Post View -->
+	<div class="ui main text container" ng-controller="postCtrl">
+		<h1 class="ui header">{{post.title}}</h1>
+		<h4>{{post.created_at}}</h4>
+		<span ng-bind-html="post.body"></span>
+		<ul>
+			<li ng-repeat="tag in post.tags" ng-bind="tag"></li>
+		</ul>
+	</div>

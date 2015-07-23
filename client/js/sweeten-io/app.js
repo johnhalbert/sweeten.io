@@ -1,0 +1,1 @@
+var sweetenio = angular.module('sweeten-io', ['ngRoute', 'textAngular']);
