@@ -60,4 +60,12 @@ module.exports = function(app){
 		res.redirect('/');
 	});
 
+	app.get('/verifylogin', function(req, res){
+		if (req.user) {
+			res.json({userid: req.user.id});
+		} else {
+			res.json({error: 'User Not Logged In!'})
+		}
+	})
+
 }

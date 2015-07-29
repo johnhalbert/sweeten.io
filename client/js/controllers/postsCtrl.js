@@ -1,25 +1,38 @@
-sweetenio.controller('postsCtrl', function($scope, postFactory){
-	
-	postFactory.retrievePosts(function(retrievedPosts){
-		$scope.posts = retrievedPosts;
-	})
+sweetenio.controller('postsCtrl', function($window, $scope, postFactory, userFactory){
 
-	$scope.pendingDelete = {};
-
-	$scope.confirmDelete = function(post){
-		$scope.pendingDelete = post
-		$('#deleteModal')
-			.modal({
-				onApprove: $scope.deletePost
-			})
-			.modal('show')
-		;
-	}
-
-	$scope.deletePost = function(){
-		postFactory.destroyPost($scope.pendingDelete, function(updatedPosts){
-			$scope.posts = updatedPosts;
+		// Retrieve post list
+		postFactory.retrievePosts(function(retrievedPosts){
+			$scope.posts = retrievedPosts;
 		})
-	}
+
+		$scope.pendingDelete = {};
+
+		$scope.confirmDelete = function(post){
+			// Check Login
+			if (!userFactory.loggedIn) {
+				$window.location.href = '/#/login';
+			} else {
+				$scope.pendingDelete = post
+				$('#deleteModal')
+					.modal({
+						onApprove: $scope.deletePost
+					})
+					.modal('show')
+				;
+			}
+		}
+
+		$scope.deletePost = function(){
+			// Check Login
+			if (!userFactory.loggedIn) {
+				$window.location.href = '/#/login';
+			} else {
+				postFactory.destroyPost($scope.pendingDelete, function(updatedPosts){
+					$scope.posts = updatedPosts;
+				})
+			}
+		}
+
+	
 
 })

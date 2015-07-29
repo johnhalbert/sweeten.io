@@ -1,15 +1,21 @@
-sweetenio.controller('navCtrl', function($scope, navFactory){
-	
-	$scope.menuItems;
+sweetenio.controller('navCtrl', function($window, $scope, navFactory, userFactory){
 
-	// navFactory.retrieveNav(function(nav){
-	// 	$scope.menuItems = nav;
-	// })
+		$scope.menuItems;
 
-	$scope.updateNav = function(){
-		navFactory.updateNav($scope.updatedNav, function(updatedNav){
-			$scope.menuItems = updatedNav;
-		})
-	}
+		// navFactory.retrieveNav(function(nav){
+		// 	$scope.menuItems = nav;
+		// })
+
+		$scope.updateNav = function(){
+			// Check login
+			if (!userFactory.loggedIn) {
+				$window.location.href = '/#/login';
+			} else {
+				navFactory.updateNav($scope.updatedNav, function(updatedNav){
+					$scope.menuItems = updatedNav;
+				})
+			}
+		}
+
 
 })
