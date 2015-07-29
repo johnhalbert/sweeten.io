@@ -28,17 +28,27 @@
 	<script type="text/javascript" src="bower_components/textAngular/dist/textAngular.min.js"></script>
 
 	<!-- Sweeten.IO Angular App -->
-	<script type="text/javascript" src="js/sweeten-io/app.js"></script>
-	<script type="text/javascript" src="js/sweeten-io/routes.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/config/routes.js"></script>
 
 	<!-- Sweeten.IO Factories -->
-	<script type="text/javascript" src="js/sweeten-io/factories/navFactory.js"></script>
-	<script type="text/javascript" src="js/sweeten-io/factories/postFactory.js"></script>
+	<script type="text/javascript" src="js/factories/navFactory.js"></script>
+	<script type="text/javascript" src="js/factories/postFactory.js"></script>
+	<script type="text/javascript" src="js/factories/userFactory.js"></script>
+	<script type="text/javascript" src="js/factories/dashFactory.js"></script>
 
 	<!-- Sweeten.IO Controllers -->
-	<script type="text/javascript" src="js/sweeten-io/controllers/navCtrl.js"></script>
-	<script type="text/javascript" src="js/sweeten-io/controllers/postCtrl.js"></script>
-	<script type="text/javascript" src="js/sweeten-io/controllers/homeCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/navCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/postCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/homeCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/userCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/dashCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/postsCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/singleCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/settingsCtrl.js"></script>
+
+	<!-- Sweeten.IO Directives -->
+	<script type="text/javascript" src="js/directives/postPreview.js"></script>
 
 	<!-- Semantic UI -->
 	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
@@ -47,27 +57,76 @@
 	<!-- Sweeten.IO CSS -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
-	<!-- JS -->
-	<script type="text/javascript">
-
-		$(document).ready(function(){
-
-			$('.main.menu').visibility({
-				type: 'fixed'
-			});
-
-		})
-
-	</script>
-
 </head>
 <body>
 
+	<!-- Dash Bar -->
+
+	<div class="ui vertical inverted sidebar labeled icon menu" id="dashbar">
+		<a class="item" href="#/dash">
+			<i class="dashboard icon"></i>
+			Dash
+		</a>
+		<a class="item" href="#/posts">
+			<i class="list layout icon"></i>
+			Posts
+		</a>
+		<a class="item" href="#/posts/new">
+			<i class="write square icon"></i>
+			Add Post
+		</a>
+		<a class="item" href="#/comments">
+			<i class="comments icon"></i>
+			Comments
+		</a>
+		<a class="item" href="#/pages">
+			<i class="file text outline icon"></i>
+			Pages
+		</a>
+		<a class="item" href="#/pages">
+			<i class="add circle icon"></i>
+			Add Page
+		</a>
+		<a class="item" href="#/users">
+			<i class="users icon"></i>
+			Users
+		</a>
+		<a class="item" href="#/settings">
+			<i class="setting icon"></i>
+			Settings
+		</a>
+		<a class="item" href="/logout">
+			<i class="sign out icon"></i>
+			Log Out
+		</a>
+	</div>
+
+	<!-- Delete Modal -->
+	<div class="ui basic modal" ng-controller="postsCtrl" id="deleteModal">
+			<div class="ui icon header">
+				<i class="warning icon"></i>
+				Really Delete Post?
+			</div>
+			<div class="content">
+				<p style="text-align: center">Are you sure you want to delete this post?  This action cannot be undone!</p>
+			</div>
+		<div class="actions">
+			<div class="ui red basic cancel inverted button">
+				<i class="remove icon"></i>
+				No
+			</div>
+			<div class="ui green ok inverted button">
+				<i class="checkmark icon"></i>
+				Yes
+			</div>
+		</div>
+	</div>
+
 	<!-- Navigation Bar -->
-	<div class="ui main menu" ng-controller="navCtrl">
+	<div class="ui top fixed menu main" id="nav" ng-controller="navCtrl">
 		<h1>Sweeten.IO</h1>
 
-		<div class="ui horizontal list" ng-repeat="menuItem in menuItems | orderBy: 'order'">
+		<div class="ui celled horizontal list" ng-repeat="menuItem in menuItems | orderBy: 'order'">
 			<div class="item">
 				<div class="content">
 					<div class="header">{{menuItem.title}}</div>

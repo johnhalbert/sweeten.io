@@ -1,0 +1,32 @@
+	<!-- Posts View -->
+	<div ng-controller="postsCtrl">
+		<div class="big-spacer"></div>
+
+		<!-- Post Grid -->
+		<div class="ui grid">
+			<div class="one wide column"></div>
+			<div class="thirteen wide column">
+				<h1>Posts</h1>
+				<div class="ui segment">
+					<table class="ui very basic table">
+						<thead>
+							<tr>
+								<th>Post Name</th>
+								<th>Published</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="post in posts">
+								<td ng-bind="post.title"></td>
+								<td ng-bind="post.created_at | date: 'MMM d, yyyy'"></td>
+								<td><a href="#/posts/{{post._id}}/update">Edit</a> | <a href="#/posts" ng-click="confirmDelete(post)">Delete</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="big-spacer"></div>
+		</div>
+
+	</div>

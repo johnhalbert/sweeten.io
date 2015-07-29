@@ -1,0 +1,9 @@
+	<!-- Home View -->
+	<div class="big-spacer"></div>
+	<div class="ui main text container" ng-controller="homeCtrl">
+		<div ng-repeat="post in posts | orderBy: 'created_at'">
+			<h1 class="ui header" ng-bind="post.title"></h1>
+			<div><span ng-bind-html="post.body | limitTo: 250"></span><a href="#/{{post.permalink}}/{{post._id}}">Read More...</a></div>
+			<div class="ui divider"></div>
+		</div>
+	</div>

@@ -1,0 +1,29 @@
+	<!-- Single Post View -->
+	<div class="big-spacer"></div>
+	<div class="ui main text container" ng-controller="singleCtrl">
+		<h1 class="ui header">{{post.title}}</h1>
+		<h4>Posted: <span>{{post.created_at | date: 'MMMM dd, yyyy'}}</span></h4>
+		<span ng-bind-html="post.body"></span>
+		<div class="ui divider"></div>
+		<div class="spacer"></div>
+		<div class="ui two column grid">
+			<div class="ui six wide column">
+				<div class="ui medium header">Categories
+					<div class="ui horizontal list">
+						<div class="item" ng-repeat="category in post.categories">
+							<a class="ui label transition visible">{{category}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui six wide column">
+				<div class="ui medium header">Tags
+					<div class="ui horizontal list">
+						<div class="item" ng-repeat="tag in post.tags">
+							<a class="ui label transition visible">{{tag}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

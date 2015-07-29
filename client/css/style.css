@@ -5,3 +5,15 @@
 .main.menu {
 	padding: 1em;
 }
+
+.spacer {
+	margin: 15px;
+}
+
+.big-spacer {
+	margin: 80px;
+}
+
+/*#dashbar {
+	z-index: 0;
+}*/

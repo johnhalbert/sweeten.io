@@ -1,0 +1,82 @@
+	<!-- Create/Edit Post View -->
+
+	<!-- Post Editor -->
+	<div class="big-spacer"></div>
+	<div class="ui two column grid" ng-controller="postCtrl">
+		<div class="one wide column"></div>
+		<div class="thirteen wide column">
+
+			<!-- Post Success Message -->
+			<div class="ui icon message" ng-show="successfulPost">
+				<i class="check circle outline icon"></i>
+				<div class="content">
+					<div class="header">
+						Post Successful!
+					</div>
+					Post was successfully created.
+				</div>
+			</div>
+
+			<!-- Update Successful Message -->
+			<div class="ui icon message" ng-show="successfulUpdate">
+				<i class="check circle outline icon"></i>
+				<div class="content">
+					<div class="header">
+						Update Successful!
+					</div>
+					Post was successfully updated.
+				</div>
+			</div>
+
+			<!-- Main Post Editor -->
+			<div class="ui container segment">
+				<h1 class="ui header">Create Post</h1>
+
+				<div class="ui small header">Post Title</div>
+				<div class="ui fluid icon input">
+					<input type="text" name="title" ng-model="post.title" placeholder="Post Title">
+				</div>
+				<div class="spacer"></div>
+				<div class="ui three column grid">
+					<div class="column">
+						<div class="ui small header">Posted At</div>
+						<!--<input type="date" name="date" ng-model="post.created_at">-->
+					</div>
+					<div class="column">
+						<div class="ui small header">Tags</div>
+						<div class="ui mini action input">
+							<input type="text" name="tags" ng-model="post.tag" placeholder="Add tag">
+							<button class="ui button" ng-click="addTag()">Add</button>
+						</div>
+						<div>
+							<div class="ui horizontal list">
+								<div class="item" ng-repeat="tag in post.tags">
+									<a class="ui label transition visible" ng-click="removeTag($index)">{{tag}}<i class="delete icon"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="ui small header">Categories</div>
+						<div class="ui mini action input">
+							<input type="text" name="categories" ng-model="post.category" placeholder="Add Category">
+							<button class="ui button" ng-click="addCategory()">Add</button>
+						</div>
+						<div>
+							<div class="ui horizontal list">
+								<div class="item" ng-repeat="category in post.categories">
+									<a class="ui label transition visible" ng-click="removeCategory($index)">{{category}}<i class="delete icon"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui small header">Post Content</div>
+				<text-angular ng-model="post.body" ta-toolbar-class="" ta-toolbar-group-class="ui icon buttons" ta-toolbar-button-class="ui basic icon button" ta-toolbar-button-active-class="ui active button"></text-angular>
+				<button class="ui button" ng-click="previewPost()">Post</button>
+				<div sweeten-preview></div>
+			</div>
+		</div>
+		<div class="big-spacer"></div>
+	</div>

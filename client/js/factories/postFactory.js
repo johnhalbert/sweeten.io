@@ -9,8 +9,8 @@ sweetenio.factory('postFactory', function($http){
 			})
 	}
 
-	factory.retrievePost = function(postTitle, callback){
-		$http.get('/posts/'+postTitle+'/show')
+	factory.retrievePost = function(postid, callback){
+		$http.get('/posts/'+postid+'/show')
 			.success(function(post){
 				callback(post);
 			})
@@ -24,9 +24,16 @@ sweetenio.factory('postFactory', function($http){
 	}
 
 	factory.updatePost = function(post, callback){
-		$http.post('/posts/'+post.title+'/update')
+		$http.post('/posts/'+post._id+'/update', post)
 			.success(function(updatedPost){
 				callback(updatedPost)
+			})
+	}
+
+	factory.destroyPost = function(post, callback){
+		$http.get('/posts/'+post._id+'/remove')
+			.success(function(updatedPosts){
+				callback(updatedPosts);
 			})
 	}
 

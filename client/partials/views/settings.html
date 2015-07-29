@@ -1,0 +1,107 @@
+	<!-- Settings View -->
+	<div class="big-spacer"></div>
+	<div ng-controller="settingsCtrl">
+		<div class="ui two column grid">
+			<div class="ui one wide column"></div>
+			<div class="ui thirteen wide column">
+				<h1>Settings</h1>
+				<div class="ui very padded segment">
+					<div class="ui medium header">Navigation</div>
+
+					<div class="ui three top attached steps">
+						<div class="step">
+							<i class="configure icon"></i>
+							<div class="content">
+								<div class="title">Nav Builder</div>
+								<div class="description">
+									Items you've added appear here.
+								</div>
+							</div>
+						</div>
+						<div class="step">
+							<i class="plus square outline icon"></i>
+							<div class="content">
+								<div class="title">Add Items</div>
+								<div class="description">
+									Fill out each of the fields below to add items to the nav builder
+								</div>
+							</div>
+						</div>
+						<div class="step">
+							<i class="database icon"></i>
+							<div class="content">
+								<div class="title">Save Nav</div>
+								<div class="description">
+									When you're done, give the nav a name and save it!
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ui attached segment">
+						<div class="ui horizontal segments">
+							<div class="ui segment">
+								<div class="ui small header">Nav Builder</div>
+								<div class="ui list">
+									<a class="item" href="{{item.location}}" ng-repeat="item in menu.navItems">
+										<i class="right triangle icon"></i>
+										<div class="content">
+											<div class="header">{{item.title}}</div>
+											<div class="description">{{item.subtitle}}</div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div class="ui segment">
+								<div class="ui small header">Add Items</div>
+								<form>
+									<div class="ui fluid input">
+										<input type="text" name="title" ng-model="newItem.title" placeholder="Item Title" />
+									</div>
+									<br />
+									<div class="ui fluid input">
+										<input type="text" name="subtitle" ng-model="newItem.subtitle" placeholder="Item Subtitle" />
+									</div>
+									<br />
+									<div class="ui fluid input">
+										<input type="text" name="order" ng-model="newItem.location" placeholder="URL Location" />
+									</div>
+									<br />
+									<button class="ui button" ng-click="createMenuEntry()">Add</button>
+								</form>
+							</div>
+							<div class="ui segment">
+								<div class="ui small header">Save Nav</div>
+								<div class="ui fluid input">
+									<input type="text" placeholder="Nav Name" ng-model="menu.name">
+								</div>
+								<br />
+								<button class="ui button" ng-click="saveMenu()">Save Nav</button>
+							</div>
+						</div>
+						<div class="ui horizontal segments">
+							<div class="ui segment">
+								<div class="ui small header">Available Navs</div>
+								<div class="ui list">
+									<a class="item" ng-repeat="nav in navs">
+										<i class="right triangle icon"></i>
+										<div class="content">
+											<div class="header">{{nav.name}}</div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div class="ui segment">
+								<div class="ui small header">Nav Selector</div>
+								<div ng-repeat="location in locations">
+									<div class="ui small header">{{location.name}}</div>
+									<select ng-model="location.nav" class="ui dropdown">
+										<option value="{{nav.name}}" ng-bind="nav.name" ng-repeat="nav in navs"></option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,60 @@
+	<!-- Login / Registration View -->
+	<div class="big-spacer"></div>
+	<div ng-controller="userCtrl">
+		<div class="ui middle aligned four column centered grid">
+			<div class="row">
+				<div class="column">
+					<div class="ui card">
+							<div class="content">
+								<!-- Login Form -->
+								<div class="header centered">Login</div>
+								<div class="meta">Login to your account to manage content</div>
+								<form class="ui form">
+									<div class="field">
+										<label>Email</label>
+										<input type="text" name="email" placeholder="Email" ng-model="userCredentials.email">
+									</div>
+									<div class="field">
+										<label>Password</label>
+										<input type="password" name="password" ng-model="userCredentials.password">
+									</div>
+									<button class="ui button" ng-click="login()">Login</button>
+								</form>
+							</div>
+						</div>
+
+						<div class="ui card" ng-show="regEnabled">
+							<div class="content">
+								<!-- Registration Form -->
+									<div class="header centered">Register</div>
+									<div class="meta">Register for a new account</div>
+									<form class="ui form">
+										<div class="field">
+											<label>First Name</label>
+											<input type="text" name="first_name" placeholder="First Name" ng-model="userInfo.first_name">
+										</div>
+										<div class="field">
+											<label>Last Name</label>
+											<input type="text" name="last_name" placeholder="Last Name" ng-model="userInfo.last_name">
+										</div>
+										<div class="field">
+											<label>Email</label>
+											<input type="text" name="email" placeholder="Email" ng-model="userInfo.email">
+										</div>
+										<div class="field">
+											<label>Password</label>
+											<input type="password" name="password" ng-model="userInfo.password">
+										</div>
+										<div class="field">
+											<label>Confirm Password</label>
+											<input type="password" name="password" ng-model="userInfo.confirmPassword">
+										</div>
+										<button class="ui button" ng-click="register()">Register</button>
+									</form>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>

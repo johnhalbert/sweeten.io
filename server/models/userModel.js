@@ -11,7 +11,6 @@ var UserSchema = new mongoose.Schema({
 	created_at: { type: Date, default: Date.now },
 	updated_at: { type: Date, default: Date.now },
 	user_level: { type: Number, default: 0 },
-	session_id: String,
 	posts: [{ type: Schema.Types.ObjectId, ref: 'Post'}]
 });
 

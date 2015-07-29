@@ -5,6 +5,7 @@
     "angularjs": "~1.4.3",
     "angular-route": "~1.4.3",
     "jquery": "~2.1.4",
-    "textAngular": "~1.4.2"
+    "textAngular": "~1.4.2",
+    "bootstrap": "~3.3.5"
   }
 }

@@ -1,0 +1,42 @@
+	<!-- Post Preview Modal -->
+	<div class="ui modal" id="previewModal">
+		<i class="close icon"></i>
+		<div class="header">
+			Post Preview
+		</div>
+		<div class="content">
+			<div class="ui large header" ng-bind="post.title"></div>
+			<div class="description" ng-bind-html="post.body"></div>
+			<div class="ui divider"></div>
+			<div class="spacer"></div>
+			<div class="ui two column grid">
+				<div class="ui six wide column">
+					<div class="ui medium header">Categories
+						<div class="ui horizontal list">
+							<div class="item" ng-repeat="category in post.categories">
+								<a class="ui label transition visible">{{category}}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui six wide column">
+					<div class="ui medium header">Tags
+						<div class="ui horizontal list">
+							<div class="item" ng-repeat="tag in post.tags">
+								<a class="ui label transition visible">{{tag}}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="actions">
+			<div class="ui black deny button">
+		      Go Back
+		    </div>
+		    <div class="ui positive right labeled icon button">
+		      Looks Good!
+		      <i class="checkmark icon"></i>
+		    </div>
+		</div>
+	</div>

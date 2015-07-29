@@ -18,7 +18,7 @@ var app = express()
 
 app.use(express.static(path.join(__dirname, './client')));
 app.use(bodyParser.json())
-app.use(cookieParser({ secret: 'soveryverysweetenio' }))
+app.use(cookieParser())
 app.use(session({ secret: 'ohsosweetenio' }))
 app.use(passport.initialize());
 app.use(passport.session());
