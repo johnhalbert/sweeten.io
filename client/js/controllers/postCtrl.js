@@ -1,84 +1,91 @@
-sweetenio.controller('postCtrl', function($scope, $routeParams, postFactory){
+sweetenio.controller('postCtrl', function($window, $scope, $routeParams, postFactory, userFactory){
 
-	$scope.successfulPost = false;
-	$scope.successfulUpdate = false;
+	// Check login
+	if (!userFactory.loggedIn) {
+		$window.location.href = '/#/login';
+	} else {
 
-	$scope.editing = false;
-	$scope.post = {}
-	$scope.post.tags = [];
-	$scope.post.categories = [];
+		$scope.successfulPost = false;
+		$scope.successfulUpdate = false;
 
-	if ($routeParams.postid){
-		postFactory.retrievePost($routeParams.postid, function(retrievedPost){
-			$scope.post = retrievedPost;
-			$scope.editing = true;
-		})
-	}
+		$scope.editing = false;
+		$scope.post = {}
+		$scope.post.tags = [];
+		$scope.post.categories = [];
 
-	$scope.postAction = function(){
-		if ($scope.editing) {
-			$scope.updatePost();
-		} else {
-			$scope.createPost();
+		if ($routeParams.postid){
+			postFactory.retrievePost($routeParams.postid, function(retrievedPost){
+				$scope.post = retrievedPost;
+				$scope.editing = true;
+			})
 		}
-	}
 
-	$scope.createPost = function(){
-		$scope.post.permalink = $scope.post.title.replace(/\s+/g, '');
-		$scope.post.permalink = $scope.post.permalink.toLowerCase();
-		postFactory.createPost($scope.post, function(createdPost){
-			$scope.successfulPost = true;
-			$scope.post = createdPost;
-			$scope.editing = true;
-		})
-	}
-
-	$scope.updatePost = function(){
-		postFactory.updatePost($scope.post, function(updatedPost){
-			if ($scope.successfulPost) {
-				$scope.successfulPost = false;
-			}
-			$scope.successfulUpdate = true;
-			$scope.post = updatedPost;
-		})
-	}
-
-	$scope.addCategory = function(){
-		var search = false;
-		for (var category in $scope.post.categories) {
-			if ($scope.post.categories[category] === $scope.post.category) {
-				search = true;
+		$scope.postAction = function(){
+			if ($scope.editing) {
+				$scope.updatePost();
+			} else {
+				$scope.createPost();
 			}
 		}
-		if (!search) {
-			$scope.post.categories.push($scope.post.category);
+
+		$scope.createPost = function(){
+			$scope.post.permalink = $scope.post.title.replace(/\s+/g, '');
+			$scope.post.permalink = $scope.post.permalink.toLowerCase();
+			postFactory.createPost($scope.post, function(createdPost){
+				$scope.successfulPost = true;
+				$scope.post = createdPost;
+				$scope.editing = true;
+			})
 		}
-		$scope.post.category = '';
-	}
 
-	$scope.removeCategory = function(index){
-		$scope.post.categories.splice(index, 1);
-	}
+		$scope.updatePost = function(){
+			postFactory.updatePost($scope.post, function(updatedPost){
+				if ($scope.successfulPost) {
+					$scope.successfulPost = false;
+				}
+				$scope.successfulUpdate = true;
+				$scope.post = updatedPost;
+			})
+		}
 
-	$scope.addTag = function(){
-		var search = false;
-		for (var tag in $scope.post.tags) {
-			if ($scope.post.tags[tag] === $scope.post.tag) {
-				search = true;
+		$scope.addCategory = function(){
+			var search = false;
+			for (var category in $scope.post.categories) {
+				if ($scope.post.categories[category] === $scope.post.category) {
+					search = true;
+				}
 			}
+			if (!search) {
+				$scope.post.categories.push($scope.post.category);
+			}
+			$scope.post.category = '';
 		}
-		if (!search) {
-			$scope.post.tags.push($scope.post.tag);
+
+		$scope.removeCategory = function(index){
+			$scope.post.categories.splice(index, 1);
 		}
-		$scope.post.tag = '';
-	}
 
-	$scope.removeTag = function(index){
-		$scope.post.tags.splice(index, 1);
-	}
+		$scope.addTag = function(){
+			var search = false;
+			for (var tag in $scope.post.tags) {
+				if ($scope.post.tags[tag] === $scope.post.tag) {
+					search = true;
+				}
+			}
+			if (!search) {
+				$scope.post.tags.push($scope.post.tag);
+			}
+			$scope.post.tag = '';
+		}
 
-	$scope.previewPost = function(){
-		$scope.$emit('open-modal');
+		$scope.removeTag = function(index){
+			$scope.post.tags.splice(index, 1);
+		}
+
+		$scope.previewPost = function(){
+			$scope.$emit('open-modal');
+		}
+
 	}
 	
 })

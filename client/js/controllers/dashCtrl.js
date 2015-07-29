@@ -1,5 +1,10 @@
-sweetenio.controller('dashCtrl', function($scope, dashFactory){
+sweetenio.controller('dashCtrl', function($window, $scope, dashFactory, userFactory){
 	
-	$scope.$emit('display-dash');
+	// Check login
+	if (!userFactory.loggedIn) {
+		$window.location.href = '/#/login';
+	} else {
+		$scope.$emit('display-dash');
+	}
 
 })
