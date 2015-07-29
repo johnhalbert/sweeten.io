@@ -12,7 +12,6 @@ sweetenio.controller('postCtrl', function($scope, $routeParams, postFactory){
 		postFactory.retrievePost($routeParams.postid, function(retrievedPost){
 			$scope.post = retrievedPost;
 			$scope.editing = true;
-			console.log($scope.successfulPost);
 		})
 	}
 
@@ -79,7 +78,7 @@ sweetenio.controller('postCtrl', function($scope, $routeParams, postFactory){
 	}
 
 	$scope.previewPost = function(){
-		$scope.$emit('open-modal')
+		$scope.$emit('open-modal');
 	}
 	
 })
