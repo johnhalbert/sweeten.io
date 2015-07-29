@@ -1,6 +1,6 @@
 sweetenio.controller('userCtrl', function($window, $scope, userFactory){
 	
-	$scope.regEnabled = true;
+	$scope.regEnabled = false;
 
 	$scope.login = function(){
 		userFactory.login($scope.userCredentials, function(response){

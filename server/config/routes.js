@@ -52,7 +52,7 @@ module.exports = function(app){
 	);
 
 	app.post('/register', function(req, res){
-		UserController.createUser(req, res);
+		// UserController.createUser(req, res);
 	});
 
 	app.get('/logout', function(req, res){
