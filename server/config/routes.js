@@ -16,6 +16,7 @@ module.exports = function(app){
 	// Alexa Routes
 
 	app.post('/alexa/new', function(req, res){
+		console.log('recieved request from alexa');
 		console.log(req.body);
 	})
 
