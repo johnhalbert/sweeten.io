@@ -2,9 +2,33 @@
 	<div class="big-spacer"></div>
 	<div ng-controller="settingsCtrl">
 		<div class="ui two column grid">
+			<!-- Main Settings Column -->
 			<div class="ui one wide column"></div>
 			<div class="ui thirteen wide column">
 				<h1>Settings</h1>
+
+				<!-- General Settings Segment -->
+				<div class="ui very padded segment">
+					<div class="ui medium header">General</div>
+					<div class="ui toggle checkbox">
+						<input type="checkbox" name="open_registration" ng-model="settings.openReg" />
+						<label>Open Registration</label>
+					</div>
+					<br /><br />
+					<div class="ui fluid input">
+						<input type="text" placeholder="Site Name" ng-model="settings.siteName" />
+					</div>
+					<br />
+					<div class="ui fluid input">
+						<input type="text" placeholder="Site URL" ng-model="settings.baseURL" />
+					</div>
+					<br />
+					<div>
+						<button class="ui button" ng-click="updateSettings()">Save</button>
+					</div>
+				</div>
+
+				<!-- Navigation Segment -->
 				<div class="ui very padded segment">
 					<div class="ui medium header">Navigation</div>
 
@@ -42,11 +66,12 @@
 							<div class="ui segment">
 								<div class="ui small header">Nav Builder</div>
 								<div class="ui list">
-									<a class="item" href="{{item.location}}" ng-repeat="item in menu.navItems">
-										<i class="right triangle icon"></i>
+									<a class="item" ng-repeat="item in menu.navItems" ng-click="removeNavItem($index)">
+										<i class="close icon"></i>
 										<div class="content">
 											<div class="header">{{item.title}}</div>
 											<div class="description">{{item.subtitle}}</div>
+											<div class="description">{{item.location}}</div>
 										</div>
 									</a>
 								</div>
@@ -83,7 +108,7 @@
 								<div class="ui small header">Available Navs</div>
 								<div class="ui list">
 									<a class="item" ng-repeat="nav in navs">
-										<i class="right triangle icon"></i>
+										<i class="close icon"></i>
 										<div class="content">
 											<div class="header">{{nav.name}}</div>
 										</div>
@@ -91,17 +116,60 @@
 								</div>
 							</div>
 							<div class="ui segment">
+								<div class="ui small header">Available Locations</div>
+								<div class="ui list">
+									<a class="item" ng-repeat="location in navLocations">
+										<i class="close icon"></i>
+										<div class="content">
+											<div class="header">{{location.name}}</div>
+										</div>
+									</a>
+								</div>
+								<div class="ui small header">Add Location</div>
+								<div class="ui fluid input">
+									<input type="text" placeholder="Location Name" ng-model="newLocation.name">
+								</div>
+								<br />
+								<button class="ui button" ng-click="createNavLocation()">Add Location</button>
+							</div>
+							<div class="ui segment">
 								<div class="ui small header">Nav Selector</div>
-								<div ng-repeat="location in locations">
+								<div ng-repeat="location in navLocations">
 									<div class="ui small header">{{location.name}}</div>
 									<select ng-model="location.nav" class="ui dropdown">
-										<option value="{{nav.name}}" ng-bind="nav.name" ng-repeat="nav in navs"></option>
+										<option value="{{nav._id}}" ng-bind="nav.name" ng-repeat="nav in navs"></option>
 									</select>
+									<br /><br />
 								</div>
+								<button class="ui button" ng-click="associateLocationsAndNavs()">Save</button>
+							</div>
+						</div>
+					</div>
+					<div class="ui three bottom attached steps">
+						<div class="step">
+							<i class="chevron circle right icon"></i>
+							<div class="content">
+								<div class="title">Available Navs</div>
+								<div class="description">A list of all the navs build using the steps at the top.</div>
+							</div>
+						</div>
+						<div class="step">
+							<i class="location arrow icon"></i>
+							<div class="content">
+								<div class="title">Available Locations</div>
+								<div class="description">A list of theme locations where navs can be assigned.  Create locations using the form in this section.</div>
+							</div>
+						</div>
+						<div class="step">
+							<i class="selected radio icon"></i>
+							<div class="content">
+								<div class="title">Nav Selector</div>
+								<div class="description">Associate navs with the locations in your theme.  Select from available navs in each dropdown box and save your settings when done.</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="big-spacer"></div>
 	</div>

@@ -46,7 +46,6 @@ module.exports = {
 	},
 	createPost: function(req, res){
 		if (req.user.id){
-			console.log(req.body);
 			var newPost = new Post({permalink: req.body.permalink, title: req.body.title, body: req.body.body, tags: req.body.tags, categories: req.body.categories, _user: req.user.id});
 			newPost.save(function(err, post){
 				if (err) {

@@ -5,14 +5,22 @@ var passport = require('passport');
 var NavigationController = require('../controllers/navigationController');
 var PostController = require('../controllers/postController');
 var UserController = require('../controllers/userController');
+var SettingsController = require('../controllers/settingsController');
 
 // Require Passport Config
 
 require('./passport');
 
 module.exports = function(app){
-	
-	// Nav Routes
+
+	// Alexa Routes
+
+	app.post('/alexa/new', function(req, res){
+		console.log(req.body);
+	})
+
+	// Setting Routes
+
 	app.get('/navigation/show', function(req, res){
 		NavigationController.retrieveNavs(req, res);
 	})
@@ -23,6 +31,26 @@ module.exports = function(app){
 
 	app.post('/navigation/new', function(req, res){
 		NavigationController.createNav(req, res);
+	})
+
+	app.post('/settings/update', function(req, res){
+		SettingsController.updateSettings(req, res);
+	})
+
+	app.get('/settings/show', function(req, res){
+		SettingsController.retrieveSettings(req, res);
+	})
+
+	app.get('/locations/show', function(req, res){
+		SettingsController.retrieveLocations(req, res);
+	})
+
+	app.post('/locations/new', function(req, res){
+		SettingsController.createLocation(req, res);
+	})
+
+	app.post('/locations/update', function(req, res){
+		SettingsController.updateLocation(req, res);
 	})
 
 	// Post Routes
