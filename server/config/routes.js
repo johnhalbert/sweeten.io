@@ -6,6 +6,7 @@ var NavigationController = require('../controllers/navigationController');
 var PostController = require('../controllers/postController');
 var UserController = require('../controllers/userController');
 var SettingsController = require('../controllers/settingsController');
+var AlexaController = require('../controllers/alexController');
 
 // Require Passport Config
 
@@ -15,8 +16,8 @@ module.exports = function(app){
 
 	// Alexa Routes
 
-	app.post('/alexa/new', function(req, res){
-		console.log(req.body);
+	app.post('/alexa', function(req, res){
+		AlexaController.alexaSkill(req, res);
 	})
 
 	// Setting Routes
