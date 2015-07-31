@@ -8,3 +8,5 @@ mongoose.connect('mongodb://localhost/sweetenio');
 require('../models/navigationModel');
 require('../models/postModel');
 require('../models/userModel');
+require('../models/settingsModel');
+require('../models/navLocationModel');
