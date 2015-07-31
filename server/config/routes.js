@@ -6,7 +6,7 @@ var NavigationController = require('../controllers/navigationController');
 var PostController = require('../controllers/postController');
 var UserController = require('../controllers/userController');
 var SettingsController = require('../controllers/settingsController');
-var AlexaController = require('../controllers/alexController');
+var AlexaController = require('../controllers/alexaController');
 
 // Require Passport Config
 
